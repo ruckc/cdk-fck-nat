@@ -60,7 +60,6 @@ const fckNatInstanceProps: FckNatInstanceProps = { ... }
 | <code><a href="#cdk-fck-nat.FckNatInstanceProps.property.eipPool">eipPool</a></code> | <code>string[]</code> | A list of EIP allocation IDs which can be attached to NAT instances. |
 | <code><a href="#cdk-fck-nat.FckNatInstanceProps.property.enableCloudWatch">enableCloudWatch</a></code> | <code>boolean</code> | Add necessary role permissions and configuration for supplementary CloudWatch metrics. |
 | <code><a href="#cdk-fck-nat.FckNatInstanceProps.property.enableSsm">enableSsm</a></code> | <code>boolean</code> | Add necessary role permissions for SSM automatically. |
-| <code><a href="#cdk-fck-nat.FckNatInstanceProps.property.keyName">keyName</a></code> | <code>string</code> | Name of SSH keypair to grant access to instance. |
 | <code><a href="#cdk-fck-nat.FckNatInstanceProps.property.keyPair">keyPair</a></code> | <code>aws-cdk-lib.aws_ec2.IKeyPair</code> | SSH keypair to attach to instances. |
 | <code><a href="#cdk-fck-nat.FckNatInstanceProps.property.machineImage">machineImage</a></code> | <code>aws-cdk-lib.aws_ec2.IMachineImage</code> | The machine image (AMI) to use. |
 | <code><a href="#cdk-fck-nat.FckNatInstanceProps.property.securityGroup">securityGroup</a></code> | <code>aws-cdk-lib.aws_ec2.ISecurityGroup</code> | Security Group for fck-nat instances. |
@@ -136,24 +135,6 @@ public readonly enableSsm: boolean;
 - *Default:* SSM is enabled
 
 Add necessary role permissions for SSM automatically.
-
----
-
-##### ~~`keyName`~~<sup>Optional</sup> <a name="keyName" id="cdk-fck-nat.FckNatInstanceProps.property.keyName"></a>
-
-- *Deprecated:* - CDK has deprecated the `keyName` parameter, use `keyPair` instead.
-
-```typescript
-public readonly keyName: string;
-```
-
-- *Type:* string
-- *Default:* No SSH access will be possible.
-
-Name of SSH keypair to grant access to instance.
-
-Setting this value will not automatically update security groups,
-that must be done separately.
 
 ---
 
