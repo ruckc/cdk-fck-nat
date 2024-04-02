@@ -202,10 +202,10 @@ export class FckNatInstanceProvider extends ec2.NatProvider implements ec2.IConn
     for (const sub of options.natSubnets) {
       const networkInterface = new ec2.CfnNetworkInterface(
         sub, 'FckNatInterface', {
-        subnetId: sub.subnetId,
-        sourceDestCheck: false,
-        groupSet: [this._securityGroup.securityGroupId],
-      },
+          subnetId: sub.subnetId,
+          sourceDestCheck: false,
+          groupSet: [this._securityGroup.securityGroupId],
+        },
       );
 
       const userData = ec2.UserData.forLinux();
@@ -221,19 +221,19 @@ export class FckNatInstanceProvider extends ec2.NatProvider implements ec2.IConn
 
       const autoScalingGroup = new autoscaling.AutoScalingGroup(
         sub, 'FckNatAsg', {
-        vpc: options.vpc,
-        vpcSubnets: { subnets: [sub] },
-        desiredCapacity: 1,
-        groupMetrics: [autoscaling.GroupMetrics.all()],
-        launchTemplate: new ec2.LaunchTemplate(sub, 'FckNatLaunchTemplate', {
-          instanceType: this.props.instanceType,
-          machineImage,
-          securityGroup: this._securityGroup,
-          role: this._role,
-          userData: userData,
-          keyPair: this.props.keyPair,
-        }),
-      },
+          vpc: options.vpc,
+          vpcSubnets: { subnets: [sub] },
+          desiredCapacity: 1,
+          groupMetrics: [autoscaling.GroupMetrics.all()],
+          launchTemplate: new ec2.LaunchTemplate(sub, 'FckNatLaunchTemplate', {
+            instanceType: this.props.instanceType,
+            machineImage,
+            securityGroup: this._securityGroup,
+            role: this._role,
+            userData: userData,
+            keyPair: this.props.keyPair,
+          }),
+        },
       );
       this._autoScalingGroups.push(autoScalingGroup);
       Annotations.of(autoScalingGroup).acknowledgeWarning('@aws-cdk/aws-autoscaling:desiredCapacitySet');
