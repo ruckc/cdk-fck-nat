@@ -2,7 +2,7 @@ import { awscdk } from 'projen';
 import { DependabotScheduleInterval } from 'projen/lib/github';
 
 const project = new awscdk.AwsCdkConstructLibrary({
-  name: 'cdk-fck-nat',
+  name: '@ruckc/cdk-fck-nat',
   license: 'MIT',
   author: 'Andrew Guenther',
   authorAddress: 'guenther.andrew.j@gmail.com',
