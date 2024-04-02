@@ -24,9 +24,9 @@ const project = new awscdk.AwsCdkConstructLibrary({
 
   defaultReleaseBranch: 'main',
 
-  packageName: 'cdk-fck-nat',
+  packageName: '@ruckc/cdk-fck-nat',
   publishToPypi: {
-    distName: 'cdk-fck-nat',
+    distName: 'ruckc-cdk-fck-nat',
     module: 'cdk_fck_nat',
   },
 

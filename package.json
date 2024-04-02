@@ -1,5 +1,5 @@
 {
-  "name": "@ruckc/cdk-fck-nat",
+  "name": "ruckc-cdk-fck-nat",
   "description": "A NAT Gateway instance construct built on the fck-nat AMI.",
   "repository": {
     "type": "git",
@@ -113,7 +113,7 @@
     "outdir": "dist",
     "targets": {
       "python": {
-        "distName": "cdk-fck-nat",
+        "distName": "ruckc-cdk-fck-nat",
         "module": "cdk_fck_nat"
       }
     },
