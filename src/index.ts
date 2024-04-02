@@ -69,15 +69,6 @@ export interface FckNatInstanceProps {
   readonly instanceType: ec2.InstanceType;
 
   /**
-   * Name of SSH keypair to grant access to instance. Setting this value will not automatically update security groups,
-   * that must be done separately.
-   *
-   * @default - No SSH access will be possible.
-   * @deprecated - CDK has deprecated the `keyName` parameter, use `keyPair` instead.
-   */
-  readonly keyName?: string;
-
-  /**
    * SSH keypair to attach to instances. Setting this value will not automatically update security groups, that must be
    * done separately.
    *
@@ -150,10 +141,6 @@ export class FckNatInstanceProvider extends ec2.NatProvider implements ec2.IConn
 
   constructor(private readonly props: FckNatInstanceProps) {
     super();
-
-    if (props.keyName && props.keyPair) {
-      throw new Error('Only one of keyName or keyPair can be specified!');
-    }
   }
 
   configureNat(options: ec2.ConfigureNatOptions): void {
@@ -215,10 +202,10 @@ export class FckNatInstanceProvider extends ec2.NatProvider implements ec2.IConn
     for (const sub of options.natSubnets) {
       const networkInterface = new ec2.CfnNetworkInterface(
         sub, 'FckNatInterface', {
-          subnetId: sub.subnetId,
-          sourceDestCheck: false,
-          groupSet: [this._securityGroup.securityGroupId],
-        },
+        subnetId: sub.subnetId,
+        sourceDestCheck: false,
+        groupSet: [this._securityGroup.securityGroupId],
+      },
       );
 
       const userData = ec2.UserData.forLinux();
@@ -234,20 +221,19 @@ export class FckNatInstanceProvider extends ec2.NatProvider implements ec2.IConn
 
       const autoScalingGroup = new autoscaling.AutoScalingGroup(
         sub, 'FckNatAsg', {
-          vpc: options.vpc,
-          vpcSubnets: { subnets: [sub] },
-          desiredCapacity: 1,
-          groupMetrics: [autoscaling.GroupMetrics.all()],
-          launchTemplate: new ec2.LaunchTemplate(sub, 'FckNatLaunchTemplate', {
-            instanceType: this.props.instanceType,
-            machineImage,
-            securityGroup: this._securityGroup,
-            role: this._role,
-            userData: userData,
-            keyName: this.props.keyName,
-            keyPair: this.props.keyPair,
-          }),
-        },
+        vpc: options.vpc,
+        vpcSubnets: { subnets: [sub] },
+        desiredCapacity: 1,
+        groupMetrics: [autoscaling.GroupMetrics.all()],
+        launchTemplate: new ec2.LaunchTemplate(sub, 'FckNatLaunchTemplate', {
+          instanceType: this.props.instanceType,
+          machineImage,
+          securityGroup: this._securityGroup,
+          role: this._role,
+          userData: userData,
+          keyPair: this.props.keyPair,
+        }),
+      },
       );
       this._autoScalingGroups.push(autoScalingGroup);
       Annotations.of(autoScalingGroup).acknowledgeWarning('@aws-cdk/aws-autoscaling:desiredCapacitySet');

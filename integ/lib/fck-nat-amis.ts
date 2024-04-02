@@ -4,7 +4,7 @@ import { FckNatInstanceProvider } from '../../src'
 export const ALL_ARM64_AMIS = ['fck-nat-al2023-*-arm64-ebs']
 export const ALL_X86_AMIS = ['fck-nat-al2023-*-x86_64-ebs']
 
-export function getFckNatProviders (
+export function getFckNatProviders(
   amiOwner: string,
   instanceType: ec2.InstanceType,
   names: string[]
@@ -18,7 +18,6 @@ export function getFckNatProviders (
         name,
         owners: [amiOwner]
       }),
-      keyName: 'fck-nat-test',
       enableCloudWatch: true,
       enableSsm: true,
     }))
@@ -41,7 +40,6 @@ export function getNatInstanceProviders(
         name,
         owners: [amiOwner]
       }),
-      keyName: 'fck-nat-test'
     }))
   }
 
