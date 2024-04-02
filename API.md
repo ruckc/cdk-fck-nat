@@ -39,14 +39,14 @@ Read more about EC2 bandwidth limits here: https://docs.aws.amazon.com/AWSEC2/la
 
 ## Structs <a name="Structs" id="Structs"></a>
 
-### FckNatInstanceProps <a name="FckNatInstanceProps" id="cdk-fck-nat.FckNatInstanceProps"></a>
+### FckNatInstanceProps <a name="FckNatInstanceProps" id="@ruckc/cdk-fck-nat.FckNatInstanceProps"></a>
 
 Properties for a fck-nat instance.
 
-#### Initializer <a name="Initializer" id="cdk-fck-nat.FckNatInstanceProps.Initializer"></a>
+#### Initializer <a name="Initializer" id="@ruckc/cdk-fck-nat.FckNatInstanceProps.Initializer"></a>
 
 ```typescript
-import { FckNatInstanceProps } from 'cdk-fck-nat'
+import { FckNatInstanceProps } from '@ruckc/cdk-fck-nat'
 
 const fckNatInstanceProps: FckNatInstanceProps = { ... }
 ```
@@ -55,18 +55,18 @@ const fckNatInstanceProps: FckNatInstanceProps = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#cdk-fck-nat.FckNatInstanceProps.property.instanceType">instanceType</a></code> | <code>aws-cdk-lib.aws_ec2.InstanceType</code> | Instance type of the fck-nat instance. |
-| <code><a href="#cdk-fck-nat.FckNatInstanceProps.property.cloudWatchConfigParam">cloudWatchConfigParam</a></code> | <code>aws-cdk-lib.aws_ssm.IStringParameter</code> | Optionally override the base Cloudwatch metric configuration found at https://fck-nat.dev/develop/features/#metrics. |
-| <code><a href="#cdk-fck-nat.FckNatInstanceProps.property.eipPool">eipPool</a></code> | <code>string[]</code> | A list of EIP allocation IDs which can be attached to NAT instances. |
-| <code><a href="#cdk-fck-nat.FckNatInstanceProps.property.enableCloudWatch">enableCloudWatch</a></code> | <code>boolean</code> | Add necessary role permissions and configuration for supplementary CloudWatch metrics. |
-| <code><a href="#cdk-fck-nat.FckNatInstanceProps.property.enableSsm">enableSsm</a></code> | <code>boolean</code> | Add necessary role permissions for SSM automatically. |
-| <code><a href="#cdk-fck-nat.FckNatInstanceProps.property.keyPair">keyPair</a></code> | <code>aws-cdk-lib.aws_ec2.IKeyPair</code> | SSH keypair to attach to instances. |
-| <code><a href="#cdk-fck-nat.FckNatInstanceProps.property.machineImage">machineImage</a></code> | <code>aws-cdk-lib.aws_ec2.IMachineImage</code> | The machine image (AMI) to use. |
-| <code><a href="#cdk-fck-nat.FckNatInstanceProps.property.securityGroup">securityGroup</a></code> | <code>aws-cdk-lib.aws_ec2.ISecurityGroup</code> | Security Group for fck-nat instances. |
+| <code><a href="#@ruckc/cdk-fck-nat.FckNatInstanceProps.property.instanceType">instanceType</a></code> | <code>aws-cdk-lib.aws_ec2.InstanceType</code> | Instance type of the fck-nat instance. |
+| <code><a href="#@ruckc/cdk-fck-nat.FckNatInstanceProps.property.cloudWatchConfigParam">cloudWatchConfigParam</a></code> | <code>aws-cdk-lib.aws_ssm.IStringParameter</code> | Optionally override the base Cloudwatch metric configuration found at https://fck-nat.dev/develop/features/#metrics. |
+| <code><a href="#@ruckc/cdk-fck-nat.FckNatInstanceProps.property.eipPool">eipPool</a></code> | <code>string[]</code> | A list of EIP allocation IDs which can be attached to NAT instances. |
+| <code><a href="#@ruckc/cdk-fck-nat.FckNatInstanceProps.property.enableCloudWatch">enableCloudWatch</a></code> | <code>boolean</code> | Add necessary role permissions and configuration for supplementary CloudWatch metrics. |
+| <code><a href="#@ruckc/cdk-fck-nat.FckNatInstanceProps.property.enableSsm">enableSsm</a></code> | <code>boolean</code> | Add necessary role permissions for SSM automatically. |
+| <code><a href="#@ruckc/cdk-fck-nat.FckNatInstanceProps.property.keyPair">keyPair</a></code> | <code>aws-cdk-lib.aws_ec2.IKeyPair</code> | SSH keypair to attach to instances. |
+| <code><a href="#@ruckc/cdk-fck-nat.FckNatInstanceProps.property.machineImage">machineImage</a></code> | <code>aws-cdk-lib.aws_ec2.IMachineImage</code> | The machine image (AMI) to use. |
+| <code><a href="#@ruckc/cdk-fck-nat.FckNatInstanceProps.property.securityGroup">securityGroup</a></code> | <code>aws-cdk-lib.aws_ec2.ISecurityGroup</code> | Security Group for fck-nat instances. |
 
 ---
 
-##### `instanceType`<sup>Required</sup> <a name="instanceType" id="cdk-fck-nat.FckNatInstanceProps.property.instanceType"></a>
+##### `instanceType`<sup>Required</sup> <a name="instanceType" id="@ruckc/cdk-fck-nat.FckNatInstanceProps.property.instanceType"></a>
 
 ```typescript
 public readonly instanceType: InstanceType;
@@ -78,7 +78,7 @@ Instance type of the fck-nat instance.
 
 ---
 
-##### `cloudWatchConfigParam`<sup>Optional</sup> <a name="cloudWatchConfigParam" id="cdk-fck-nat.FckNatInstanceProps.property.cloudWatchConfigParam"></a>
+##### `cloudWatchConfigParam`<sup>Optional</sup> <a name="cloudWatchConfigParam" id="@ruckc/cdk-fck-nat.FckNatInstanceProps.property.cloudWatchConfigParam"></a>
 
 ```typescript
 public readonly cloudWatchConfigParam: IStringParameter;
@@ -94,7 +94,7 @@ If you wish to override the default parameter name, the default configuration co
 
 ---
 
-##### `eipPool`<sup>Optional</sup> <a name="eipPool" id="cdk-fck-nat.FckNatInstanceProps.property.eipPool"></a>
+##### `eipPool`<sup>Optional</sup> <a name="eipPool" id="@ruckc/cdk-fck-nat.FckNatInstanceProps.property.eipPool"></a>
 
 ```typescript
 public readonly eipPool: string[];
@@ -109,7 +109,7 @@ greater than or equal to the number of egress subnets in your VPC.
 
 ---
 
-##### `enableCloudWatch`<sup>Optional</sup> <a name="enableCloudWatch" id="cdk-fck-nat.FckNatInstanceProps.property.enableCloudWatch"></a>
+##### `enableCloudWatch`<sup>Optional</sup> <a name="enableCloudWatch" id="@ruckc/cdk-fck-nat.FckNatInstanceProps.property.enableCloudWatch"></a>
 
 ```typescript
 public readonly enableCloudWatch: boolean;
@@ -125,7 +125,7 @@ INCUR ADDITIONAL COSTS! See https://fck-nat.dev/develop/features/#metrics for mo
 
 ---
 
-##### `enableSsm`<sup>Optional</sup> <a name="enableSsm" id="cdk-fck-nat.FckNatInstanceProps.property.enableSsm"></a>
+##### `enableSsm`<sup>Optional</sup> <a name="enableSsm" id="@ruckc/cdk-fck-nat.FckNatInstanceProps.property.enableSsm"></a>
 
 ```typescript
 public readonly enableSsm: boolean;
@@ -138,7 +138,7 @@ Add necessary role permissions for SSM automatically.
 
 ---
 
-##### `keyPair`<sup>Optional</sup> <a name="keyPair" id="cdk-fck-nat.FckNatInstanceProps.property.keyPair"></a>
+##### `keyPair`<sup>Optional</sup> <a name="keyPair" id="@ruckc/cdk-fck-nat.FckNatInstanceProps.property.keyPair"></a>
 
 ```typescript
 public readonly keyPair: IKeyPair;
@@ -154,7 +154,7 @@ done separately.
 
 ---
 
-##### `machineImage`<sup>Optional</sup> <a name="machineImage" id="cdk-fck-nat.FckNatInstanceProps.property.machineImage"></a>
+##### `machineImage`<sup>Optional</sup> <a name="machineImage" id="@ruckc/cdk-fck-nat.FckNatInstanceProps.property.machineImage"></a>
 
 ```typescript
 public readonly machineImage: IMachineImage;
@@ -181,7 +181,7 @@ FckNatInstanceProvider({
 
 ---
 
-##### `securityGroup`<sup>Optional</sup> <a name="securityGroup" id="cdk-fck-nat.FckNatInstanceProps.property.securityGroup"></a>
+##### `securityGroup`<sup>Optional</sup> <a name="securityGroup" id="@ruckc/cdk-fck-nat.FckNatInstanceProps.property.securityGroup"></a>
 
 ```typescript
 public readonly securityGroup: ISecurityGroup;
@@ -196,27 +196,27 @@ Security Group for fck-nat instances.
 
 ## Classes <a name="Classes" id="Classes"></a>
 
-### FckNatInstanceProvider <a name="FckNatInstanceProvider" id="cdk-fck-nat.FckNatInstanceProvider"></a>
+### FckNatInstanceProvider <a name="FckNatInstanceProvider" id="@ruckc/cdk-fck-nat.FckNatInstanceProvider"></a>
 
 - *Implements:* aws-cdk-lib.aws_ec2.IConnectable
 
-#### Initializers <a name="Initializers" id="cdk-fck-nat.FckNatInstanceProvider.Initializer"></a>
+#### Initializers <a name="Initializers" id="@ruckc/cdk-fck-nat.FckNatInstanceProvider.Initializer"></a>
 
 ```typescript
-import { FckNatInstanceProvider } from 'cdk-fck-nat'
+import { FckNatInstanceProvider } from '@ruckc/cdk-fck-nat'
 
 new FckNatInstanceProvider(props: FckNatInstanceProps)
 ```
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#cdk-fck-nat.FckNatInstanceProvider.Initializer.parameter.props">props</a></code> | <code><a href="#cdk-fck-nat.FckNatInstanceProps">FckNatInstanceProps</a></code> | *No description.* |
+| <code><a href="#@ruckc/cdk-fck-nat.FckNatInstanceProvider.Initializer.parameter.props">props</a></code> | <code><a href="#@ruckc/cdk-fck-nat.FckNatInstanceProps">FckNatInstanceProps</a></code> | *No description.* |
 
 ---
 
-##### `props`<sup>Required</sup> <a name="props" id="cdk-fck-nat.FckNatInstanceProvider.Initializer.parameter.props"></a>
+##### `props`<sup>Required</sup> <a name="props" id="@ruckc/cdk-fck-nat.FckNatInstanceProvider.Initializer.parameter.props"></a>
 
-- *Type:* <a href="#cdk-fck-nat.FckNatInstanceProps">FckNatInstanceProps</a>
+- *Type:* <a href="#@ruckc/cdk-fck-nat.FckNatInstanceProps">FckNatInstanceProps</a>
 
 ---
 
@@ -224,12 +224,12 @@ new FckNatInstanceProvider(props: FckNatInstanceProps)
 
 | **Name** | **Description** |
 | --- | --- |
-| <code><a href="#cdk-fck-nat.FckNatInstanceProvider.configureNat">configureNat</a></code> | Called by the VPC to configure NAT. |
-| <code><a href="#cdk-fck-nat.FckNatInstanceProvider.configureSubnet">configureSubnet</a></code> | Configures subnet with the gateway. |
+| <code><a href="#@ruckc/cdk-fck-nat.FckNatInstanceProvider.configureNat">configureNat</a></code> | Called by the VPC to configure NAT. |
+| <code><a href="#@ruckc/cdk-fck-nat.FckNatInstanceProvider.configureSubnet">configureSubnet</a></code> | Configures subnet with the gateway. |
 
 ---
 
-##### `configureNat` <a name="configureNat" id="cdk-fck-nat.FckNatInstanceProvider.configureNat"></a>
+##### `configureNat` <a name="configureNat" id="@ruckc/cdk-fck-nat.FckNatInstanceProvider.configureNat"></a>
 
 ```typescript
 public configureNat(options: ConfigureNatOptions): void
@@ -239,13 +239,13 @@ Called by the VPC to configure NAT.
 
 Don't call this directly, the VPC will call it automatically.
 
-###### `options`<sup>Required</sup> <a name="options" id="cdk-fck-nat.FckNatInstanceProvider.configureNat.parameter.options"></a>
+###### `options`<sup>Required</sup> <a name="options" id="@ruckc/cdk-fck-nat.FckNatInstanceProvider.configureNat.parameter.options"></a>
 
 - *Type:* aws-cdk-lib.aws_ec2.ConfigureNatOptions
 
 ---
 
-##### `configureSubnet` <a name="configureSubnet" id="cdk-fck-nat.FckNatInstanceProvider.configureSubnet"></a>
+##### `configureSubnet` <a name="configureSubnet" id="@ruckc/cdk-fck-nat.FckNatInstanceProvider.configureSubnet"></a>
 
 ```typescript
 public configureSubnet(subnet: PrivateSubnet): void
@@ -255,7 +255,7 @@ Configures subnet with the gateway.
 
 Don't call this directly, the VPC will call it automatically.
 
-###### `subnet`<sup>Required</sup> <a name="subnet" id="cdk-fck-nat.FckNatInstanceProvider.configureSubnet.parameter.subnet"></a>
+###### `subnet`<sup>Required</sup> <a name="subnet" id="@ruckc/cdk-fck-nat.FckNatInstanceProvider.configureSubnet.parameter.subnet"></a>
 
 - *Type:* aws-cdk-lib.aws_ec2.PrivateSubnet
 
@@ -265,15 +265,15 @@ Don't call this directly, the VPC will call it automatically.
 
 | **Name** | **Description** |
 | --- | --- |
-| <code><a href="#cdk-fck-nat.FckNatInstanceProvider.gateway">gateway</a></code> | Use NAT Gateways to provide NAT services for your VPC. |
-| <code><a href="#cdk-fck-nat.FckNatInstanceProvider.instance">instance</a></code> | Use NAT instances to provide NAT services for your VPC. |
+| <code><a href="#@ruckc/cdk-fck-nat.FckNatInstanceProvider.gateway">gateway</a></code> | Use NAT Gateways to provide NAT services for your VPC. |
+| <code><a href="#@ruckc/cdk-fck-nat.FckNatInstanceProvider.instance">instance</a></code> | Use NAT instances to provide NAT services for your VPC. |
 
 ---
 
-##### `gateway` <a name="gateway" id="cdk-fck-nat.FckNatInstanceProvider.gateway"></a>
+##### `gateway` <a name="gateway" id="@ruckc/cdk-fck-nat.FckNatInstanceProvider.gateway"></a>
 
 ```typescript
-import { FckNatInstanceProvider } from 'cdk-fck-nat'
+import { FckNatInstanceProvider } from '@ruckc/cdk-fck-nat'
 
 FckNatInstanceProvider.gateway(props?: NatGatewayProps)
 ```
@@ -284,16 +284,16 @@ NAT gateways are managed by AWS.
 
 > [https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html)
 
-###### `props`<sup>Optional</sup> <a name="props" id="cdk-fck-nat.FckNatInstanceProvider.gateway.parameter.props"></a>
+###### `props`<sup>Optional</sup> <a name="props" id="@ruckc/cdk-fck-nat.FckNatInstanceProvider.gateway.parameter.props"></a>
 
 - *Type:* aws-cdk-lib.aws_ec2.NatGatewayProps
 
 ---
 
-##### `instance` <a name="instance" id="cdk-fck-nat.FckNatInstanceProvider.instance"></a>
+##### `instance` <a name="instance" id="@ruckc/cdk-fck-nat.FckNatInstanceProvider.instance"></a>
 
 ```typescript
-import { FckNatInstanceProvider } from 'cdk-fck-nat'
+import { FckNatInstanceProvider } from '@ruckc/cdk-fck-nat'
 
 FckNatInstanceProvider.instance(props: NatInstanceProps)
 ```
@@ -308,7 +308,7 @@ your own NatProvider based on AutoScaling groups if you need that.
 
 > [https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT_Instance.html](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT_Instance.html)
 
-###### `props`<sup>Required</sup> <a name="props" id="cdk-fck-nat.FckNatInstanceProvider.instance.parameter.props"></a>
+###### `props`<sup>Required</sup> <a name="props" id="@ruckc/cdk-fck-nat.FckNatInstanceProvider.instance.parameter.props"></a>
 
 - *Type:* aws-cdk-lib.aws_ec2.NatInstanceProps
 
@@ -318,15 +318,15 @@ your own NatProvider based on AutoScaling groups if you need that.
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#cdk-fck-nat.FckNatInstanceProvider.property.configuredGateways">configuredGateways</a></code> | <code>aws-cdk-lib.aws_ec2.GatewayConfig[]</code> | Return list of gateways spawned by the provider. |
-| <code><a href="#cdk-fck-nat.FckNatInstanceProvider.property.autoScalingGroups">autoScalingGroups</a></code> | <code>aws-cdk-lib.aws_autoscaling.AutoScalingGroup[]</code> | The ASGs (Auto Scaling Groups) managing the NAT instances. |
-| <code><a href="#cdk-fck-nat.FckNatInstanceProvider.property.connections">connections</a></code> | <code>aws-cdk-lib.aws_ec2.Connections</code> | Manage the Security Groups associated with the NAT instances. |
-| <code><a href="#cdk-fck-nat.FckNatInstanceProvider.property.role">role</a></code> | <code>aws-cdk-lib.aws_iam.Role</code> | The instance role attached with the NAT instances. |
-| <code><a href="#cdk-fck-nat.FckNatInstanceProvider.property.securityGroup">securityGroup</a></code> | <code>aws-cdk-lib.aws_ec2.ISecurityGroup</code> | The Security Group associated with the NAT instances. |
+| <code><a href="#@ruckc/cdk-fck-nat.FckNatInstanceProvider.property.configuredGateways">configuredGateways</a></code> | <code>aws-cdk-lib.aws_ec2.GatewayConfig[]</code> | Return list of gateways spawned by the provider. |
+| <code><a href="#@ruckc/cdk-fck-nat.FckNatInstanceProvider.property.autoScalingGroups">autoScalingGroups</a></code> | <code>aws-cdk-lib.aws_autoscaling.AutoScalingGroup[]</code> | The ASGs (Auto Scaling Groups) managing the NAT instances. |
+| <code><a href="#@ruckc/cdk-fck-nat.FckNatInstanceProvider.property.connections">connections</a></code> | <code>aws-cdk-lib.aws_ec2.Connections</code> | Manage the Security Groups associated with the NAT instances. |
+| <code><a href="#@ruckc/cdk-fck-nat.FckNatInstanceProvider.property.role">role</a></code> | <code>aws-cdk-lib.aws_iam.Role</code> | The instance role attached with the NAT instances. |
+| <code><a href="#@ruckc/cdk-fck-nat.FckNatInstanceProvider.property.securityGroup">securityGroup</a></code> | <code>aws-cdk-lib.aws_ec2.ISecurityGroup</code> | The Security Group associated with the NAT instances. |
 
 ---
 
-##### `configuredGateways`<sup>Required</sup> <a name="configuredGateways" id="cdk-fck-nat.FckNatInstanceProvider.property.configuredGateways"></a>
+##### `configuredGateways`<sup>Required</sup> <a name="configuredGateways" id="@ruckc/cdk-fck-nat.FckNatInstanceProvider.property.configuredGateways"></a>
 
 ```typescript
 public readonly configuredGateways: GatewayConfig[];
@@ -338,7 +338,7 @@ Return list of gateways spawned by the provider.
 
 ---
 
-##### `autoScalingGroups`<sup>Required</sup> <a name="autoScalingGroups" id="cdk-fck-nat.FckNatInstanceProvider.property.autoScalingGroups"></a>
+##### `autoScalingGroups`<sup>Required</sup> <a name="autoScalingGroups" id="@ruckc/cdk-fck-nat.FckNatInstanceProvider.property.autoScalingGroups"></a>
 
 ```typescript
 public readonly autoScalingGroups: AutoScalingGroup[];
@@ -352,7 +352,7 @@ These can be retrieved to get metrics and
 
 ---
 
-##### `connections`<sup>Required</sup> <a name="connections" id="cdk-fck-nat.FckNatInstanceProvider.property.connections"></a>
+##### `connections`<sup>Required</sup> <a name="connections" id="@ruckc/cdk-fck-nat.FckNatInstanceProvider.property.connections"></a>
 
 ```typescript
 public readonly connections: Connections;
@@ -364,7 +364,7 @@ Manage the Security Groups associated with the NAT instances.
 
 ---
 
-##### `role`<sup>Required</sup> <a name="role" id="cdk-fck-nat.FckNatInstanceProvider.property.role"></a>
+##### `role`<sup>Required</sup> <a name="role" id="@ruckc/cdk-fck-nat.FckNatInstanceProvider.property.role"></a>
 
 ```typescript
 public readonly role: Role;
@@ -376,7 +376,7 @@ The instance role attached with the NAT instances.
 
 ---
 
-##### `securityGroup`<sup>Required</sup> <a name="securityGroup" id="cdk-fck-nat.FckNatInstanceProvider.property.securityGroup"></a>
+##### `securityGroup`<sup>Required</sup> <a name="securityGroup" id="@ruckc/cdk-fck-nat.FckNatInstanceProvider.property.securityGroup"></a>
 
 ```typescript
 public readonly securityGroup: ISecurityGroup;
@@ -392,13 +392,13 @@ The Security Group associated with the NAT instances.
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#cdk-fck-nat.FckNatInstanceProvider.property.AMI_NAME">AMI_NAME</a></code> | <code>string</code> | The AMI name used internally when calling `LookupMachineImage`. |
-| <code><a href="#cdk-fck-nat.FckNatInstanceProvider.property.AMI_OWNER">AMI_OWNER</a></code> | <code>string</code> | The AMI owner used internally when calling `LookupMachineImage`. |
-| <code><a href="#cdk-fck-nat.FckNatInstanceProvider.property.DEFAULT_CLOUDWATCH_CONFIG">DEFAULT_CLOUDWATCH_CONFIG</a></code> | <code>any</code> | The default CloudWatch config used when additional CloudWatch metric reporting is enabled. |
+| <code><a href="#@ruckc/cdk-fck-nat.FckNatInstanceProvider.property.AMI_NAME">AMI_NAME</a></code> | <code>string</code> | The AMI name used internally when calling `LookupMachineImage`. |
+| <code><a href="#@ruckc/cdk-fck-nat.FckNatInstanceProvider.property.AMI_OWNER">AMI_OWNER</a></code> | <code>string</code> | The AMI owner used internally when calling `LookupMachineImage`. |
+| <code><a href="#@ruckc/cdk-fck-nat.FckNatInstanceProvider.property.DEFAULT_CLOUDWATCH_CONFIG">DEFAULT_CLOUDWATCH_CONFIG</a></code> | <code>any</code> | The default CloudWatch config used when additional CloudWatch metric reporting is enabled. |
 
 ---
 
-##### `AMI_NAME`<sup>Required</sup> <a name="AMI_NAME" id="cdk-fck-nat.FckNatInstanceProvider.property.AMI_NAME"></a>
+##### `AMI_NAME`<sup>Required</sup> <a name="AMI_NAME" id="@ruckc/cdk-fck-nat.FckNatInstanceProvider.property.AMI_NAME"></a>
 
 ```typescript
 public readonly AMI_NAME: string;
@@ -413,7 +413,7 @@ externally.
 
 ---
 
-##### `AMI_OWNER`<sup>Required</sup> <a name="AMI_OWNER" id="cdk-fck-nat.FckNatInstanceProvider.property.AMI_OWNER"></a>
+##### `AMI_OWNER`<sup>Required</sup> <a name="AMI_OWNER" id="@ruckc/cdk-fck-nat.FckNatInstanceProvider.property.AMI_OWNER"></a>
 
 ```typescript
 public readonly AMI_OWNER: string;
@@ -428,7 +428,7 @@ externally.
 
 ---
 
-##### `DEFAULT_CLOUDWATCH_CONFIG`<sup>Required</sup> <a name="DEFAULT_CLOUDWATCH_CONFIG" id="cdk-fck-nat.FckNatInstanceProvider.property.DEFAULT_CLOUDWATCH_CONFIG"></a>
+##### `DEFAULT_CLOUDWATCH_CONFIG`<sup>Required</sup> <a name="DEFAULT_CLOUDWATCH_CONFIG" id="@ruckc/cdk-fck-nat.FckNatInstanceProvider.property.DEFAULT_CLOUDWATCH_CONFIG"></a>
 
 ```typescript
 public readonly DEFAULT_CLOUDWATCH_CONFIG: any;
