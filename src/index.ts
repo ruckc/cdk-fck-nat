@@ -168,11 +168,21 @@ export class FckNatInstanceProvider extends ec2.NatProvider implements ec2.IConn
     });
     this._connections = new ec2.Connections({ securityGroups: [this._securityGroup] });
 
+    const networkInterfaces = options.natSubnets.map(sub => {
+      return new ec2.CfnNetworkInterface(
+        sub, 'FckNatInterface', {
+          subnetId: sub.subnetId,
+          sourceDestCheck: false,
+          groupSet: [this._securityGroup!.securityGroupId],
+        },
+      );
+    });
+
     const policies: { [name: string]: iam.PolicyDocument } = {
-      attachNatEniPolicy: new iam.PolicyDocument({
+      attachNsatEniPolicy: new iam.PolicyDocument({
         statements: [new iam.PolicyStatement({
           actions: ['ec2:AttachNetworkInterface', 'ec2:ModifyNetworkInterfaceAttribute'],
-          resources: ['*'],
+          resources: networkInterfaces.map(x => x.ref),
         })],
       }),
     };
@@ -219,14 +229,9 @@ export class FckNatInstanceProvider extends ec2.NatProvider implements ec2.IConn
 
     this._autoScalingGroups = [];
     const eipPool = this.props.eipPool ? [...this.props.eipPool] : undefined;
-    for (const sub of options.natSubnets) {
-      const networkInterface = new ec2.CfnNetworkInterface(
-        sub, 'FckNatInterface', {
-          subnetId: sub.subnetId,
-          sourceDestCheck: false,
-          groupSet: [this._securityGroup.securityGroupId],
-        },
-      );
+    for (const subIndex in options.natSubnets) {
+      const sub = options.natSubnets[subIndex];
+      const networkInterface = networkInterfaces[subIndex];
 
       const userData = ec2.UserData.forLinux();
       userData.addCommands(`echo "eni_id=${networkInterface.ref}" >> /etc/fck-nat.conf`);
