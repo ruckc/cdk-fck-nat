@@ -219,22 +219,34 @@ export class FckNatInstanceProvider extends ec2.NatProvider implements ec2.IConn
       }
       userData.addCommands('service fck-nat restart');
 
+      const launchTemplate = new ec2.LaunchTemplate(sub, 'FckNatLaunchTemplate', {
+        instanceType: this.props.instanceType,
+        machineImage,
+        securityGroup: this._securityGroup,
+        role: this._role,
+        userData: userData,
+        keyPair: this.props.keyPair,
+        blockDevices: [
+          {
+            deviceName: '/dev/xvda',
+            mappingEnabled: true,
+            volume: ec2.BlockDeviceVolume.ebs(30, {
+              deleteOnTermination: true,
+              volumeType: ec2.EbsDeviceVolumeType.GP3,
+              encrypted: true,
+            }),
+          },
+        ],
+      });
+
       const autoScalingGroup = new autoscaling.AutoScalingGroup(
         sub, 'FckNatAsg', {
           vpc: options.vpc,
           vpcSubnets: { subnets: [sub] },
           desiredCapacity: 1,
           groupMetrics: [autoscaling.GroupMetrics.all()],
-          launchTemplate: new ec2.LaunchTemplate(sub, 'FckNatLaunchTemplate', {
-            instanceType: this.props.instanceType,
-            machineImage,
-            securityGroup: this._securityGroup,
-            role: this._role,
-            userData: userData,
-            keyPair: this.props.keyPair,
-          }),
-        },
-      );
+          launchTemplate: launchTemplate,
+        });
       this._autoScalingGroups.push(autoScalingGroup);
       Annotations.of(autoScalingGroup).acknowledgeWarning('@aws-cdk/aws-autoscaling:desiredCapacitySet');
       // NAT instance routes all traffic, both ways
