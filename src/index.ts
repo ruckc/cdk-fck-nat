@@ -168,33 +168,53 @@ export class FckNatInstanceProvider extends ec2.NatProvider implements ec2.IConn
     });
     this._connections = new ec2.Connections({ securityGroups: [this._securityGroup] });
 
+    const policies: { [name: string]: iam.PolicyDocument } = {
+      attachNatEniPolicy: new iam.PolicyDocument({
+        statements: [new iam.PolicyStatement({
+          actions: ['ec2:AttachNetworkInterface', 'ec2:ModifyNetworkInterfaceAttribute'],
+          resources: ['*'],
+        })],
+      }),
+    };
+
+    if (this.props.enableSsm === undefined || this.props.enableSsm) {
+      // this._role.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonSSMManagedEC2InstanceDefaultPolicy'));
+      // minimal policy from https://www.nebulaworks.com/insights/posts/aws-ssm-session-manager/
+      policies.ssmPolicy = new iam.PolicyDocument({
+        statements: [
+          new iam.PolicyStatement({
+            sid: 'channels',
+            actions: [
+              'ssmmessages:CreateControlChannel',
+              'ssmmessages:CreateDataChannel',
+              'ssmmessages:OpenControlChannel',
+              'ssmmessages:OpenDataChannel',
+              'ssm:UpdateInstanceInformation',
+            ],
+            resources: ['*'],
+          }),
+        ],
+      });
+    }
+
+    if (this.props.eipPool) {
+      policies.eipPool = new iam.PolicyDocument({
+        statements: [new iam.PolicyStatement({
+          actions: ['ec2:AssociateAddress', 'ec2:DisassociateAddress'],
+          resources: ['*'],
+        })],
+      });
+    }
+
     // TODO: This should get buttoned up to only allow attaching ENIs created by this construct.
     this._role = new iam.Role(options.vpc, 'NatRole', {
       assumedBy: new iam.ServicePrincipal('ec2.amazonaws.com'),
-      inlinePolicies: {
-        attachNatEniPolicy: new iam.PolicyDocument({
-          statements: [new iam.PolicyStatement({
-            actions: ['ec2:AttachNetworkInterface', 'ec2:ModifyNetworkInterfaceAttribute'],
-            resources: ['*'],
-          })],
-        }),
-      },
+      inlinePolicies: policies,
     });
-
-    if (this.props.enableSsm === undefined || this.props.enableSsm) {
-      this._role.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonSSMManagedEC2InstanceDefaultPolicy'));
-    }
 
     if (this.props.enableCloudWatch) {
       this._role.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('CloudWatchAgentServerPolicy'));
       cloudWatchConfigParam?.grantRead(this._role);
-    }
-
-    if (this.props.eipPool) {
-      this._role.addToPolicy(new iam.PolicyStatement({
-        actions: ['ec2:AssociateAddress', 'ec2:DisassociateAddress'],
-        resources: ['*'],
-      }));
     }
 
     this._autoScalingGroups = [];
